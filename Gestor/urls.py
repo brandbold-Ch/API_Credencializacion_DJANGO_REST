@@ -12,5 +12,3 @@ urlpatterns = [
     path('', include('rescue_password_views.urls')),
     path('docs/', include_docs_urls(title='Api Documentation UPTAP Credencialización'))
 ]
-
-handler404 = 'core.views.error_404'
