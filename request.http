@@ -1,0 +1,134 @@
+GET 127.0.0.1:8000/alumnos
+###
+
+POST 127.0.0.1:8000/alumnos/
+Content-Type: application/json
+
+{
+  "password": "soymujer",
+  "email": "223010@uptapachula.edu.mx",
+  "nombre": "Karina MAría",
+  "apellidos": "Koslova Canceco",
+  "fecha_nacimiento": "1997-05-27",
+  "direccion": "Moscú",
+  "usuario_activo": true,
+  "numero_telefono": "1234567898",
+  "tipo_usuario": "alumno",
+  "imagen": "octopus-image.png",
+  "matricula": "223010",
+  "cuatrimestre": 3,
+  "carrera": 2,
+  "gradoDeEstudio": 1
+}
+
+###
+
+POST 127.0.0.1:8000/alumnos/
+Content-Type: application/json
+
+{
+  "password": "soyguapo",
+  "email": "223060@uptapachula.edu.mx",
+  "nombre": "Ever Emmanuel",
+  "apellidos": "Escobar de León",
+  "fecha_nacimiento": "2004-02-23",
+  "direccion": "Tuxtla Gutierrez",
+  "usuario_activo": true,
+  "numero_telefono": "9697505170",
+  "imagen": "image/upload/octopus-image.png",
+  "tipo_usuario": "alumno",
+  "matricula": "223060",
+  "cuatrimestre": 3,
+  "carrera": 2,
+  "gradoDeEstudio": 1
+}
+
+###
+
+POST 127.0.0.1:8000/directivos/
+Content-Type: application/json
+
+{
+  "password": "soydirectivo",
+  "email": "223041@uptapachula.edu.mx",
+  "nombre": "Pablo Raúl",
+  "apellidos": "Garay de Pacheco",
+  "fecha_nacimiento": "1998-03-21",
+  "direccion": "Ejido Morelos Mazatán",
+  "usuario_activo": true,
+  "numero_telefono": "9617505170",
+  "imagen": "image/upload/octopus-image.png",
+  "tipo_usuario": "directivo",
+  "puesto": "Director de carrera gay"
+}
+
+###
+
+POST 127.0.0.1:8000/carreras/
+Content-Type: application/json
+
+{
+  "nombre_carrera": "Ingeníeria en Mecatrónica"
+}
+
+###
+
+POST 127.0.0.1:8000/grado_estudio/
+Content-Type: application/json
+
+{
+  "grado": "Master"
+}
+
+###
+
+POST 127.0.0.1:8000/alumno/5/ficha_medica
+Content-Type: application/json
+
+{
+  "tipo_sangre": "A-",
+  "alergias": "Ninguna",
+  "enfermedades_cronicas": "Ninguna"
+}
+
+###
+
+POST 127.0.0.1:8000/alumno/5/contactos
+Content-Type: application/json
+
+{
+  "nombre_contacto_emergencia": "Primo",
+  "numero_contacto_emergencia": "9661345679"
+}
+
+###
+
+POST 127.0.0.1:8000/administrador/6/contactos
+Content-Type: application/json
+
+{
+  "nombre_contacto_emergencia": "Esposa",
+  "numero_contacto_emergencia": "9637125171"
+}
+
+###
+
+POST 127.0.0.1:8000/administradores/
+Content-Type: application/json
+
+{
+  "password": "soyrober",
+  "email": "223050@uptapachula.edu.mx",
+  "nombre": "Rober Antony",
+  "apellidos": "Miss May",
+  "fecha_nacimiento": "1998-04-12",
+  "direccion": "Yúcatan",
+  "usuario_activo": true,
+  "is_staff": true,
+  "numero_telefono": "9632715171",
+  "tipo_usuario": "administrador",
+  "imagen": "octopus-image.png",
+  "departamento": "LT1",
+  "is_admin": true,
+  "is_administrador": true
+}
