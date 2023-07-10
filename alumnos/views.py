@@ -42,7 +42,7 @@ class StudentDetail(APIView):
             return Response(serializer.data)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El alumno no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def patch(self, request: Request, unique: int):
@@ -58,7 +58,7 @@ class StudentDetail(APIView):
                 return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El alumno no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
@@ -104,7 +104,7 @@ class StudentFichaMedicaView(APIView):
             }, status=HTTP_302_FOUND)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El alumno no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def post(self, request: Request, unique: int):
@@ -121,7 +121,7 @@ class StudentFichaMedicaView(APIView):
                 return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El alumno no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def put(self, request: Request, unique: int):
@@ -140,7 +140,7 @@ class StudentFichaMedicaView(APIView):
                 return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El alumno no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
