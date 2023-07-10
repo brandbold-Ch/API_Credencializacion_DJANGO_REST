@@ -141,7 +141,7 @@ class MaestroFichaMedicaView(APIView):
                 return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El maestro no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
@@ -159,7 +159,7 @@ class MaestroContactoEmergencia(APIView):
             }, status=HTTP_302_FOUND)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El maestro no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def post(self, request: Request, pk):
@@ -210,7 +210,7 @@ class MaestroSolicitudCredencialView(APIView):
             return Response(serializer.data, status=HTTP_200_OK)
         else:
             return Response({
-                "message": "El alumno no existe"
+                "message": "El maestro no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
