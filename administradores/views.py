@@ -217,7 +217,7 @@ class AdminMedicalRecordView(APIView):
                 return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El administrador no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
@@ -235,7 +235,7 @@ class AdminContactEmergencyView(APIView):
             }, status=HTTP_302_FOUND)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El administrador no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def post(self, request: Request, unique: int):
@@ -309,7 +309,6 @@ class ActivateCredentialView(APIView):
                 return selection
             else:
                 return filter_request
-
         else:
             return Response({
                 "message": "El administrador no existe"
@@ -364,7 +363,6 @@ class ValidateRequestView(APIView):
                 return selection
             else:
                 return filter_request
-
         else:
             return Response({
                 "message": "El administrador no existe"
@@ -485,7 +483,6 @@ class ListadoDetailAlumno(APIView):
 
         if administrador is not None:
             if alumno is not None:
-                request.data["password"] = make_password(request.data["password"])
                 serializer = SerializerStudent(alumno, data=request.data, partial=True)
                 if serializer.is_valid():
                     serializer.save()
@@ -549,7 +546,6 @@ class ListadoDetailDirectivo(APIView):
 
         if administrador is not None:
             if directivo is not None:
-                request.data["password"] = make_password(request.data["password"])
                 serializer = SerializerDirectivo(directivo, data=request.data, partial=True)
                 if serializer.is_valid():
                     serializer.save()
@@ -582,7 +578,7 @@ class ListadoMaestros(APIView):
             return Response(serializer.data, status=HTTP_200_OK)
         else:
             return Response({
-                "message": "El maestro no existe"
+                "message": "El administrador no existe"
             }, status=HTTP_404_NOT_FOUND)
 
 
