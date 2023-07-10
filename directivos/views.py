@@ -43,7 +43,7 @@ class DirectivoDetail(APIView):
             return Response(serializer.data, status=HTTP_200_OK)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El directivo no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def patch(self, request: Request, unique: int):
