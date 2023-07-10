@@ -36,7 +36,7 @@ def get_character(unique: str, person: str):
 def get_or_create_token(admin):
     return Response({
         "id_admin": admin.id,
-        "token": str(Token.objects.get_or_create(admin)[0])
+        "token": str(Token.objects.get_or_create(user=admin)[0])
     }, status=HTTP_200_OK)
 
 
