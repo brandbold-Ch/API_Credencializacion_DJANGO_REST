@@ -17,7 +17,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El alumno no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "directivo":
             model: Directivo = get_character(unique, "directivo")
             if model is not None:
@@ -25,7 +25,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El directivo no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "maestro":
             model: Maestro = get_character(unique, "maestro")
             if model is not None:
@@ -33,7 +33,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El maestro no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "administrador":
             model: Administrador = get_character(unique, "administrador")
             if model is not None:
@@ -41,7 +41,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El administrador no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case _:
             return Response({
                 "message": "Hubo un error en la consulta"
@@ -65,6 +65,6 @@ class ResetPasswordClient(APIView):
             else:
                 return Response({
                     "message": "Las fechas de nacimiento no coinciden"
-                }, status=HTTP_204_NO_CONTENT)
+                }, status=HTTP_400_BAD_REQUEST)
         else:
             return model

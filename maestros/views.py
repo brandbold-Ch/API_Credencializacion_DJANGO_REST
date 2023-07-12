@@ -28,7 +28,7 @@ class MaestroView(APIView):
             return Response(serializer.data, status=HTTP_200_OK)
         else:
             print(serializer.errors)
-            return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
 class MaestroDetail(APIView):
@@ -56,7 +56,7 @@ class MaestroDetail(APIView):
                 serializer.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -82,7 +82,7 @@ class CambiarPasswordMaestro(APIView):
             else:
                 return Response({
                     "message": "La contraseña no coincide con la actual"
-                }, status=HTTP_204_NO_CONTENT)
+                }, status=HTTP_400_BAD_REQUEST)
 
         else:
             return Response({
@@ -102,7 +102,7 @@ class MaestroFichaMedicaView(APIView):
                 "tipo_sangre": maestro.get_tipo_sangre(),
                 "alergias": maestro.get_alergias(),
                 "enfermedades_cronicas": maestro.get_enfermedades_cronicas()
-            }, status=HTTP_302_FOUND)
+            }, status=HTTP_200_OK)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -119,7 +119,7 @@ class MaestroFichaMedicaView(APIView):
                                          request.data["enfermedades_cronicas"])
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -138,7 +138,7 @@ class MaestroFichaMedicaView(APIView):
                 maestro.ficha_medica.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -156,7 +156,7 @@ class MaestroContactoEmergencia(APIView):
             return Response({
                 "nombre_contacto_emergencia": maestro.get_nombre_contacto_emergencia(),
                 "numero_contacto_emergencia": maestro.get_numero_contacto_emergencia()
-            }, status=HTTP_302_FOUND)
+            }, status=HTTP_200_OK)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -172,7 +172,7 @@ class MaestroContactoEmergencia(APIView):
                 maestro.crearContactoEmergencia(request.data["nombre_contacto_emergencia"], request.data["numero_contacto_emergencia"])
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El maestro no existe"
@@ -190,7 +190,7 @@ class MaestroContactoEmergencia(APIView):
                 maestro.contacto_emergencia.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El maestro no existe"

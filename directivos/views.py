@@ -28,7 +28,7 @@ class DirectivoView(APIView):
             return Response(serializer.data, status=HTTP_200_OK)
         else:
             print(serializer.errors)
-            return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
 class DirectivoDetail(APIView):
@@ -56,7 +56,7 @@ class DirectivoDetail(APIView):
                 serializer.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El directivo no existe"
@@ -82,7 +82,7 @@ class CambiarPasswordDirectivo(APIView):
             else:
                 return Response({
                     "message": "La contraseña no coincide con la actual"
-                }, status=HTTP_204_NO_CONTENT)
+                }, status=HTTP_400_BAD_REQUEST)
 
         else:
             return Response({
@@ -102,7 +102,7 @@ class DirectivoFichaMedicaView(APIView):
                 "tipo_sangre": directivo.get_tipo_sangre(),
                 "alergias": directivo.get_alergias(),
                 "enfermedades_cronicas": directivo.get_enfermedades_cronicas()
-            }, status=HTTP_302_FOUND)
+            }, status=HTTP_200_OK)
         else:
             return Response({
                 "message": "El directivo no existe"
@@ -119,7 +119,7 @@ class DirectivoFichaMedicaView(APIView):
                                          request.data["enfermedades_cronicas"])
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El directivo no existe"
@@ -138,7 +138,7 @@ class DirectivoFichaMedicaView(APIView):
                 directivo.ficha_medica.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El directivo no existe"
@@ -172,7 +172,7 @@ class DirectivoContactoEmergencia(APIView):
                 directivo.crearContactoEmergencia(request.data["nombre_contacto_emergencia"], request.data["numero_contacto_emergencia"])
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El directivo no existe"
@@ -190,7 +190,7 @@ class DirectivoContactoEmergencia(APIView):
                 directivo.contacto_emergencia.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El directivo no existe"

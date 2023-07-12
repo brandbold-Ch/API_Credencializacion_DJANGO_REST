@@ -63,7 +63,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El alumno no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "directivo":
             model: Directivo = get_character(unique, "directivo")
             if model is not None:
@@ -71,7 +71,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El directivo no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "maestro":
             model: Maestro = get_character(unique, "maestro")
             if model is not None:
@@ -79,7 +79,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El maestro no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case "administrador":
             model: Administrador = get_character(unique, "administrador")
             if model is not None:
@@ -87,7 +87,7 @@ def filter_user(user: str, unique: int):
             else:
                 return Response({
                     "message": "El administrador no existe"
-                })
+                }, status=HTTP_404_NOT_FOUND)
         case _:
             return Response({
                 "message": "Hubo un error en la consulta"
@@ -159,7 +159,7 @@ class ChangePasswordAdminView(APIView):
             else:
                 return Response({
                     "message": "La contraseña no coincide con la actual"
-                }, status=HTTP_204_NO_CONTENT)
+                }, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El administrador no existe"
@@ -178,7 +178,7 @@ class AdminMedicalRecordView(APIView):
                 "tipo_sangre": administrador.get_tipo_sangre(),
                 "alergias": administrador.get_alergias(),
                 "enfermedades_cronicas": administrador.get_enfermedades_cronicas()
-            }, status=HTTP_302_FOUND)
+            }, status=HTTP_200_OK)
         else:
             return Response({
                 "message": "El administrador no existe"
@@ -252,7 +252,7 @@ class AdminContactEmergencyView(APIView):
                 return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
-                "message": "El usuario no existe"
+                "message": "El administrador no existe"
             }, status=HTTP_404_NOT_FOUND)
 
     def put(self, request: Request, unique: int):
@@ -312,7 +312,7 @@ class ActivateCredentialView(APIView):
         else:
             return Response({
                 "message": "El administrador no existe"
-            })
+            }, status=HTTP_404_NOT_FOUND)
 
 
 class ValidateRequestView(APIView):
@@ -366,7 +366,7 @@ class ValidateRequestView(APIView):
         else:
             return Response({
                 "message": "El administrador no existe"
-            })
+            }, status=HTTP_404_NOT_FOUND)
 
 
 class ListadoSolicitudesView(APIView):
@@ -488,7 +488,7 @@ class ListadoDetailAlumno(APIView):
                     serializer.save()
                     return Response(serializer.data, status=HTTP_202_ACCEPTED)
                 else:
-                    return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
             else:
                 return Response({
                     "message": "El alumno no existe"
@@ -551,7 +551,7 @@ class ListadoDetailDirectivo(APIView):
                     serializer.save()
                     return Response(serializer.data, status=HTTP_202_ACCEPTED)
                 else:
-                    return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
             else:
                 return Response({
                     "message": "El directivo no existe"
@@ -614,7 +614,7 @@ class ListadoDetailMaestro(APIView):
                     serializer.save()
                     return Response(serializer.data, status=HTTP_202_ACCEPTED)
                 else:
-                    return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
             else:
                 return Response({
                     "message": "El maestro no existe"
@@ -644,7 +644,7 @@ class ProfessionView(APIView):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         else:
-            return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
 class GradoEstudioView(APIView):
@@ -663,7 +663,7 @@ class GradoEstudioView(APIView):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         else:
-            return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
 class CuatrimestreView(APIView):
@@ -682,4 +682,4 @@ class CuatrimestreView(APIView):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         else:
-            return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)

@@ -137,7 +137,7 @@ class StudentFichaMedicaView(APIView):
                 alumno.ficha_medica.save()
                 return Response(serializer.data, status=HTTP_202_ACCEPTED)
             else:
-                return Response(serializer.errors, status=HTTP_204_NO_CONTENT)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El alumno no existe"
@@ -155,7 +155,7 @@ class StudentContactoEmergencia(APIView):
             return Response({
                 "nombre_contacto_emergencia": alumno.get_nombre_contacto_emergencia(),
                 "numero_contacto_emergencia": alumno.get_numero_contacto_emergencia()
-            }, status=HTTP_302_FOUND)
+            }, status=HTTP_200_OK)
         else:
             return Response({
                 "message": "El alumno no existe"
